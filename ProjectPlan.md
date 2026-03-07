@@ -27,9 +27,20 @@ Key Attributes: Team_Name (String), Win_Loss_Percentage (Float), Playoff_Appeara
 
 Source: Official NBA historical standings.
 
-
-
 Research Question
 Primary Question: To what extent do advanced efficiency metrics (like PER and Win Shares) predict a player’s salary compared to traditional "box score" stats like points per game?
 
 Analytical Goal: Identify "under-valued" players whose statistical contributions significantly exceed their contractual cost.
+
+Data Lifecycle and Storage Strategy
+As the lead for data architecture, I will oversee the following lifecycle:
+
+Ingestion: Data will be collected via Python-based web scraping and API calls. Raw files will be initially stored in a data/raw/ directory in .csv format to preserve the original provenance.
+
+Processing & Cleaning: * Schema Standardization: Ensuring all column names follow snake_case and data types (e.g., converting salary strings like "$40M" to float values) are consistent.
+
+Entity Resolution: Standardizing player names (e.g., "Luka Doncic" vs "Luka Dončić") to ensure seamless joining across different sources.
+
+Storage & Organization: * Processed data will be stored in data/processed/ as a master integrated file.
+
+For the GitHub repository, I will implement a clear directory structure to separate the document schema from the actual analysis scripts, ensuring the project remains scalable and organized.
