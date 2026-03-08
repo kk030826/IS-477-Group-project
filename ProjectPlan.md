@@ -15,7 +15,37 @@ To achieve this, we will execute an end-to-end data pipeline with the following 
 
 ### Team
 
+#### Lead Strategist (Colin Cosillo)
 
+Colin will be responsible for the overall project management with the following key responsibilities:
+
+**Project Planning & Documentation:** Authoring the project overview, establishing the timeline, and identifying potential constraints or knowledge gaps.
+
+**Regulatory & Ethical Compliance:** Researching the terms of service for our data sources and ensuring our data handling meets course ethical standards.
+
+**Quality Assurance:** Reviewing the final comparative model to ensure it addresses our core research questions and remains aligned with the project's goals.
+
+**Milestone Management:** Managing the GitHub repository's administrative tasks, including tagging releases and submitting documentation to Canvas.
+
+#### Lead Architect (Daniel Kang)
+
+Daniel will be responsible for the technical infrastructure and ensuring project reproducibility. Key responsibilities include:
+
+**Data Acquisition & Pipeline:** Writing the Python scripts to interface with the nba_api and developing the web scraping logic for financial data.
+
+**System Integration:** Designing the schema for our master dataset and implementing the logic for "Entity Resolution" to link players across different naming conventions.
+
+**Workflow Automation:** Setting up the project’s directory structure and creating the "Run All" script to ensure the entire analysis can be reproduced with a single command.
+
+**Storage Strategy:** Managing the data/raw and data/processed environments and ensuring that all data artifacts are stored with proper versioning and provenance.
+
+#### Shared Responsibilities
+
+**Collaborative Coding:** Both members will participate in code reviews and contribute to the Python scripts, with individual contributions clearly documented through Git commit history.
+
+**Data Cleaning:** We will split the cleaning tasks, with each of us cleaning the same number of datasets. One will focus on performance metrics and the other on financial/salary normalization.
+
+**Final Reporting:** Collaborating on the interpretation of results and the creation of data visualizations for the final project submission.
 
 ### Research Questions
 Primary Research Question: To what extent do advanced efficiency metrics (like PER and Win Shares) predict a player’s salary compared to traditional "box score" stats like points per game?
