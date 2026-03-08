@@ -108,7 +108,7 @@ The following timeline outlines our roadmap from data acquisition to the final p
 We anticipate certain technical and legal constraints that may impact our workflow:
 * **API Rate Limiting:** The `nba_api` often throttles requests. We must implement time delays in our scripts to ensure the acquisition process is stable and reproducible.
 * **Entity Resolution:** NBA player names often include suffixes (Jr., III) or special characters (e.g., Luka Dončić). Our integration logic must account for these to avoid "null" values during our SQL joins.
-* **Data Privacy & Terms of Use:** While the data is public, we must comply with the robots.txt and Terms of Service for Basketball-Reference and HoopsHype to ensure ethical scraping practices.
+* **Data Privacy & Terms of Use:** While our primary data sources (NBA.com, Basketball-Reference, HoopsHype) are public, we operate under a "Fair Use" doctrine for academic research. We have reviewed the robots.txt for each domain to ensure our automated collection scripts do not violate their crawling policies. All data will be attributed to its original source, and no proprietary or non-public financial records will be accessed.
 * **Data Sparsity:** Salary data for "two-way" players or 10-day contract athletes may be incomplete, requiring us to set a "Minimum Minutes Played" threshold for our analysis.
 
 ## Gaps
