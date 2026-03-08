@@ -66,6 +66,10 @@ Source: Professional basketball reference sites (e.g., Basketball-Reference).
 **NBA Player Salaries (Financial Data)**
 
 Description: Historical data of annual salaries and contract lengths for NBA players.
+https://www.nba.com/stats/players/traditional 
+https://www.basketball-reference.com/leagues/NBA_2026_advanced.html (advanced metrics data)
+https://www.hoopshype.com/salaries/players/ (salary data)
+https://www.nba.com/standings (team performance)
 
 Key Attributes: Player_Name (String), Season (Integer), Salary (Numeric), Team_Affiliation (String).
 
