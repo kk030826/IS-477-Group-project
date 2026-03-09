@@ -58,7 +58,6 @@ To ensure a high level of data integrity and provenance, our team will not be us
 **NBA Player Statistics (Performance Data)**
 
 Description: Contains seasonal box-score metrics for individual players.
-https://www.nba.com/standings (team performance)
 
 https://www.nba.com/stats/players/traditional 
 
