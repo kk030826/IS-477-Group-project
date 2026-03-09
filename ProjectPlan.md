@@ -59,17 +59,21 @@ To analyze the relationship between player performance and market value, our tea
 
 Description: Contains seasonal box-score metrics for individual players.
 https://www.nba.com/standings (team performance)
+NBA.com (nba_api): * "The data is accessed via the nba_api, which interfaces with NBA.com’s public-facing statistics. We use this data strictly for non-commercial, educational research purposes, adhering to the standard API rate limits to avoid server strain."
+
 https://www.nba.com/stats/players/traditional 
 
 Key Attributes: Player_Name (String), Season (Integer), Points_Per_Game (Float), True_Shooting_Percentage (Float), and PER (Player Efficiency Rating).
 
 Source: Professional basketball reference sites (e.g., Basketball-Reference).
+"According to their Terms of Use, the data is available for personal and non-commercial use. We will ensure our scraping frequency complies with their robots.txt to maintain ethical data harvesting practices."
 
 **NBA Player Salaries (Financial Data)**
 
 Description: Historical data of annual salaries and contract lengths for NBA players.
 https://www.basketball-reference.com/leagues/NBA_2026_advanced.html (advanced metrics data)
 https://www.hoopshype.com/salaries/players/ (salary data)
+"These platforms provide public financial data. Our usage is limited to academic analysis, and we will cite all original sources to respect their data provenance and intellectual property."
 
 Key Attributes: Player_Name (String), Season (Integer), Salary (Numeric), Team_Affiliation (String).
 
