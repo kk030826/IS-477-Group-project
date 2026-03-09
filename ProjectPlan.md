@@ -59,7 +59,7 @@ To analyze the relationship between player performance and market value, our tea
 
 Description: Contains seasonal box-score metrics for individual players.
 https://www.nba.com/standings (team performance)
-NBA.com (nba_api): * "The data is accessed via the nba_api, which interfaces with NBA.com’s public-facing statistics. We use this data strictly for non-commercial, educational research purposes, adhering to the standard API rate limits to avoid server strain."
+"The data is accessed via the nba_api, which interfaces with NBA.com’s public-facing statistics. We use this data strictly for non-commercial, educational research purposes, adhering to the standard API rate limits to avoid server strain."
 
 https://www.nba.com/stats/players/traditional 
 
