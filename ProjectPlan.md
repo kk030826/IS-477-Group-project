@@ -72,8 +72,6 @@ Source: Professional basketball reference sites (e.g., Basketball-Reference).
 
 Description: Historical data of annual salaries and contract lengths for NBA players.
 
-https://www.basketball-reference.com/leagues/NBA_2026_advanced.html (advanced metrics data)
-
 https://www.hoopshype.com/salaries/players/ (salary data)
 "These platforms provide public financial data. Our usage is limited to academic analysis, and we will cite all original sources to respect their data provenance and intellectual property."
 
@@ -83,11 +81,20 @@ Source: Financial tracking databases (e.g., HoopsHype or Spotrac).
 
 **NBA Team Standings (Success Metrics)**
 
+https://www.basketball-reference.com/leagues/NBA_2026_advanced.html (advanced metrics data)
+
 Description: Data regarding team-level success to determine if team winning percentage correlates with individual overpayment.
 
 Key Attributes: Team_Name (String), Win_Loss_Percentage (Float), Playoff_Appearance (Boolean).
 
 Source: Official NBA historical standings.
+
+**Data Licensing & Ethics**
+NBA.com (nba_api): * "The data is accessed via the nba_api, which interfaces with NBA.com’s public-facing statistics. We use this data strictly for non-commercial, educational research purposes, adhering to the standard API rate limits to avoid server strain."
+
+Basketball-Reference: * "According to their Terms of Use, the data is available for personal and non-commercial use. We will ensure our scraping frequency complies with their robots.txt to maintain ethical data harvesting practices."
+
+HoopsHype / Spotrac (Salary Data): * "These platforms provide public financial data. Our usage is limited to academic analysis, and we will cite all original sources to respect their data provenance and intellectual property."
 
 ## Timeline
 
