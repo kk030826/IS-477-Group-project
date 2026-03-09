@@ -53,7 +53,7 @@ To what extent do advanced efficiency metrics (e.g., Player Efficiency Rating (P
 Analytical Question: Can we identify a specific cluster of "undervalued" players whose statistical contributions significantly exceed their contractual costs, and do these players share common characteristics (예: age, position, or team success)?
 
 ### Datasets: Identification and Description
-To analyze the relationship between player performance and market value, our team will integrate the following three datasets:
+To ensure a high level of data integrity and provenance, our team will not be using third-party aggregators like Kaggle for data collection. To analyze the relationship between player performance and market value, our team will integrate the following three datasets :
 
 **NBA Player Statistics (Performance Data)**
 
