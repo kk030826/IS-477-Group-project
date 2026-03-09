@@ -71,7 +71,9 @@ Source: Professional basketball reference sites (e.g., Basketball-Reference).
 **NBA Player Salaries (Financial Data)**
 
 Description: Historical data of annual salaries and contract lengths for NBA players.
+
 https://www.basketball-reference.com/leagues/NBA_2026_advanced.html (advanced metrics data)
+
 https://www.hoopshype.com/salaries/players/ (salary data)
 "These platforms provide public financial data. Our usage is limited to academic analysis, and we will cite all original sources to respect their data provenance and intellectual property."
 
