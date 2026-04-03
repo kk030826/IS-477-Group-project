@@ -32,7 +32,9 @@ Our core research questions remain unchanged:
 - Can we identify "undervalued" players whose contributions 
   significantly exceed their contractual costs?
 
-  
+### Feedback from Milestone 2
+(Whatever TA for Professor said about it)
+
 ## 4. Challenges and Resolutions
 [Mention API limits, name cleaning, or SQL join issues.]
 
