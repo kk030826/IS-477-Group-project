@@ -1,5 +1,3 @@
-save_path = os.path.join('..', 'data', 'raw', 'nba_stats_2023_24.csv')
-df.to_csv(save_path, index=False)
 import os
 import pandas as pd
 from nba_api.stats.endpoints import leaguedashplayerstats
@@ -11,15 +9,18 @@ os.makedirs('../data/raw', exist_ok=True)
 print("Fetching player statistics from NBA API...")
 
 try:
+    # 2. Request Data from NBA API
     stats = leaguedashplayerstats.LeagueDashPlayerStats(
         season='2023-24',
         per_mode_detailed='PerGame',
         season_type_all_star='Regular Season'
     )
     
+    # 3. Convert the result to a Pandas DataFrame
     df = stats.get_data_frames()[0]
     
-    file_path = '../data/raw/nba_stats_2023_24.csv'
+    # 4. Define the save path and save as CSV
+    file_path = os.path.join('..', 'data', 'raw', 'nba_stats_2023_24.csv')
     df.to_csv(file_path, index=False)
     
     print(f"Success! Data has been saved to: {file_path}")
