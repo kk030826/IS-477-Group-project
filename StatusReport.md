@@ -12,9 +12,21 @@ All raw datasets have been successfully collected and stored in `data/raw/`:
 ### Data Integration 🔄 In Progress
 SQL/Pandas joins across datasets are planned. Entity resolution for player name inconsistencies is being addressed.
 
-### Data Cleaning 🔄 In Progress
-Initial inspection identified issues including accented characters in player names, salary formatting ($), and missing salary entries for two-way contract players.
+### Data Cleaning ✅ Complete
+The following issues were identified and resolved using `scripts/clean_data.py`:
 
+- **Player name encoding**: Fixed accented characters (e.g., "Nikola JokiÄ" → "Nikola Jokić") using latin1/utf-8 re-encoding
+- **Salary formatting**: Removed `$` symbols and commas from salary columns and converted to float (e.g., "$55,224,526" → 55224526.0)
+- **Shifted columns**: Fixed misaligned columns in salary data where rank numbers appeared in the player_name column
+- **Minimum minutes filter**: Removed players with fewer than 10 minutes per game from stats datasets (569 → 458 players)
+- **Team name formatting**: Removed playoff asterisks from team names (e.g., "Cleveland Cavaliers*" → "Cleveland Cavaliers")
+- **Duplicate entries**: Removed duplicate player rows by keeping the entry with highest minutes played
+
+Cleaned files saved to `data/processed/`:
+- [`data/processed/player_salaries_clean.csv`](data/processed/player_salaries_clean.csv)
+- [`data/processed/player_stats_traditional_clean.csv`](data/processed/player_stats_traditional_clean.csv)
+- [`data/processed/player_stats_advanced_clean.csv`](data/processed/player_stats_advanced_clean.csv)
+- [`data/processed/team_standings_clean.csv`](data/processed/team_standings_clean.csv)
 ### Workflow Automation ⬜ Not Started
 A master automation script (main.py or Snakemake) will be developed to link all steps end-to-end.
 ## 2. Updated Project Timeline
