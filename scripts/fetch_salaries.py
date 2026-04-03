@@ -1,17 +1,18 @@
 """
 fetch_salaries.py
-Scrapes 2024-25 NBA player salary data from HoopsHype
+Scrapes 2024-25 NBA player salary data from Basketball-Reference
 and saves to data/raw/
 """
 
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import io
 import os
 
 os.makedirs("data/raw", exist_ok=True)
 
-URL = "https://hoopshype.com/salaries/players/2024-2025/"
+URL = "https://www.basketball-reference.com/contracts/players.html"
 
 headers = {
     "User-Agent": (
@@ -26,20 +27,24 @@ resp = requests.get(URL, headers=headers)
 resp.raise_for_status()
 
 soup = BeautifulSoup(resp.text, "html.parser")
-table = soup.find("table", class_="hh-salaries-ranking-table")
+table = soup.find("table", {"id": "player-contracts"})
 
-rows = []
-for tr in table.find_all("tr")[1:]:  # skip header
-    cols = tr.find_all("td")
-    if len(cols) >= 3:
-        rank = cols[0].get_text(strip=True)
-        player = cols[1].get_text(strip=True)
-        salary_raw = cols[2].get_text(strip=True)
-        # convert "$40,600,000" -> 40600000
-        salary = int(salary_raw.replace("$", "").replace(",", "")) if salary_raw else None
-        rows.append({"rank": rank, "player_name": player, "salary_2024_25": salary})
+df = pd.read_html(io.StringIO(str(table)))[0]
 
-df = pd.DataFrame(rows)
+# flatten multi-level columns if needed
+if isinstance(df.columns, pd.MultiIndex):
+    df.columns = [' '.join(col).strip() for col in df.columns]
+
+df.columns = df.columns.str.strip()
+print("Columns:", df.columns.tolist())
+
+# rename first two columns
+df = df.rename(columns={df.columns[0]: "player_name", df.columns[1]: "team"})
+
+# drop repeated header rows
+df = df[df["player_name"] != "Player"]
+df = df.dropna(subset=["player_name"])
+
 df.to_csv("data/raw/player_salaries.csv", index=False)
 print(f"  Saved {len(df)} players -> data/raw/player_salaries.csv")
 print(df.head())
