@@ -16,8 +16,8 @@ time.sleep(1)
 
 trad = leaguedashplayerstats.LeagueDashPlayerStats(
     season="2024-25",
-    per_mode_simple="PerGame",
-    measure_type_simple="Base"
+    per_mode_detailed="PerGame",
+    measure_type_detailed_defense="Base"
 )
 df_trad = trad.get_data_frames()[0]
 df_trad.to_csv("data/raw/player_stats_traditional.csv", index=False)
@@ -28,8 +28,8 @@ time.sleep(2)  # rate limit
 print("Fetching advanced stats...")
 adv = leaguedashplayerstats.LeagueDashPlayerStats(
     season="2024-25",
-    per_mode_simple="PerGame",
-    measure_type_simple="Advanced"
+    per_mode_detailed="PerGame",
+    measure_type_detailed_defense="Advanced"
 )
 df_adv = adv.get_data_frames()[0]
 df_adv.to_csv("data/raw/player_stats_advanced.csv", index=False)
