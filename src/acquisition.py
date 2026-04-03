@@ -1,3 +1,5 @@
+save_path = os.path.join('..', 'data', 'raw', 'nba_stats_2023_24.csv')
+df.to_csv(save_path, index=False)
 import os
 import pandas as pd
 from nba_api.stats.endpoints import leaguedashplayerstats
