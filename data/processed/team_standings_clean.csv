@@ -1,0 +1,31 @@
+team_name,W,L,W/L%,GB,PS/G,PA/G,SRS,conference
+Boston Celtics,61,21,0.744,—,116.3,107.2,8.28,East
+New York Knicks,51,31,0.622,10.0,115.8,111.7,3.59,East
+Toronto Raptors,30,52,0.366,31.0,110.9,115.2,-4.4,East
+Brooklyn Nets,26,56,0.317,35.0,105.1,112.2,-6.95,East
+Philadelphia 76ers,24,58,0.293,37.0,109.6,115.8,-6.29,East
+Cleveland Cavaliers,64,18,0.78,—,121.9,112.4,8.81,East
+Indiana Pacers,50,32,0.61,14.0,117.4,115.1,1.68,East
+Milwaukee Bucks,48,34,0.585,16.0,115.5,113.0,2.12,East
+Detroit Pistons,44,38,0.537,20.0,115.5,113.6,1.73,East
+Chicago Bulls,39,43,0.476,25.0,117.8,119.4,-1.83,East
+Orlando Magic,41,41,0.5,—,105.4,105.5,-0.7,East
+Atlanta Hawks,40,42,0.488,1.0,118.2,119.3,-1.41,East
+Miami Heat,37,45,0.451,4.0,110.6,110.0,0.11,East
+Charlotte Hornets,19,63,0.232,22.0,105.1,114.2,-9.1,East
+Washington Wizards,18,64,0.22,23.0,108.0,120.4,-12.14,East
+Oklahoma City Thunder,68,14,0.829,—,120.5,107.6,12.7,West
+Denver Nuggets,50,32,0.61,18.0,120.8,116.9,3.97,West
+Minnesota Timberwolves,49,33,0.598,19.0,114.3,109.3,5.15,West
+Portland Trail Blazers,36,46,0.439,32.0,110.9,113.9,-2.67,West
+Utah Jazz,17,65,0.207,51.0,111.9,121.2,-8.51,West
+Los Angeles Lakers,50,32,0.61,—,113.4,112.2,1.45,West
+Los Angeles Clippers,50,32,0.61,—,112.9,108.2,4.84,West
+Golden State Warriors,48,34,0.585,2.0,113.8,110.5,3.56,West
+Sacramento Kings,40,42,0.488,10.0,115.7,115.3,0.58,West
+Phoenix Suns,36,46,0.439,14.0,113.6,116.6,-2.55,West
+Houston Rockets,52,30,0.634,—,114.3,109.8,4.97,West
+Memphis Grizzlies,48,34,0.585,4.0,121.7,116.9,4.79,West
+Dallas Mavericks,39,43,0.476,13.0,114.2,115.4,-0.74,West
+San Antonio Spurs,34,48,0.415,18.0,113.9,116.7,-2.45,West
+New Orleans Pelicans,21,61,0.256,31.0,109.8,119.3,-8.59,West

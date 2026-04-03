@@ -1,12 +1,13 @@
 """
 fetch_team_standings.py
-Scrapes 2024-25 NBA team standings + advanced metrics from Basketball-Reference
+Scrapes 2024-25 NBA team standings from Basketball-Reference
 and saves to data/raw/
 """
 
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import io
 import os
 
 os.makedirs("data/raw", exist_ok=True)
@@ -25,24 +26,28 @@ print(f"Scraping: {URL}")
 resp = requests.get(URL, headers=headers)
 resp.raise_for_status()
 
-# pandas can read HTML tables directly
-tables = pd.read_html(resp.text)
+soup = BeautifulSoup(resp.text, "html.parser")
 
-# Eastern Conference = tables[0], Western Conference = tables[1]
-df_east = tables[0].copy()
+# Get Eastern and Western conference tables separately
+east_table = soup.find("table", {"id": "divs_standings_E"})
+west_table = soup.find("table", {"id": "divs_standings_W"})
+
+df_east = pd.read_html(io.StringIO(str(east_table)))[0]
 df_east["conference"] = "East"
 
-df_west = tables[1].copy()
+df_west = pd.read_html(io.StringIO(str(west_table)))[0]
 df_west["conference"] = "West"
+
+# Rename first column to team_name
+df_east.columns = ["team_name"] + list(df_east.columns[1:])
+df_west.columns = ["team_name"] + list(df_west.columns[1:])
+
+# Remove division header rows (they don't have W/L data)
+df_east = df_east[pd.to_numeric(df_east["W"], errors="coerce").notna()]
+df_west = df_west[pd.to_numeric(df_west["W"], errors="coerce").notna()]
 
 df = pd.concat([df_east, df_west], ignore_index=True)
 
-# rename team column (varies by year)
-df.rename(columns={df.columns[0]: "team_name"}, inplace=True)
-
-# clean up multi-level headers if any
-df.columns = [str(c).strip() for c in df.columns]
-
 df.to_csv("data/raw/team_standings.csv", index=False)
 print(f"  Saved {len(df)} teams -> data/raw/team_standings.csv")
-print(df.head())
+print(df[["team_name", "W", "L", "W/L%", "conference"]].to_string())
