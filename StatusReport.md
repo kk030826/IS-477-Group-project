@@ -1,8 +1,22 @@
 # Milestone 3: Interim Status Report
 
 ## 1. Task Updates and Artifacts
-[List every task from your M2 timeline here. Link to your scripts and data files.]
+### Data Acquisition ✅ Complete
+All raw datasets have been successfully collected and stored in `data/raw/`:
 
+- **Traditional Stats**: Collected via [`scripts/fetch_player_stats.py`](scripts/fetch_player_stats.py) using `nba_api` → [`data/raw/player_stats_traditional.csv`](data/raw/player_stats_traditional.csv)
+- **Advanced Stats**: Collected via [`scripts/fetch_player_stats.py`](scripts/fetch_player_stats.py) using `nba_api` → [`data/raw/player_stats_advanced.csv`](data/raw/player_stats_advanced.csv)
+- **Player Salaries**: Scraped via [`scripts/fetch_salaries.py`](scripts/fetch_salaries.py) from Basketball-Reference → [`data/raw/player_salaries.csv`](data/raw/player_salaries.csv)
+- **Team Standings**: Scraped via [`scripts/fetch_team_standings.py`](scripts/fetch_team_standings.py) from Basketball-Reference → [`data/raw/team_standings.csv`](data/raw/team_standings.csv)
+
+### Data Integration 🔄 In Progress
+SQL/Pandas joins across datasets are planned. Entity resolution for player name inconsistencies is being addressed.
+
+### Data Cleaning 🔄 In Progress
+Initial inspection identified issues including accented characters in player names, salary formatting ($), and missing salary entries for two-way contract players.
+
+### Workflow Automation ⬜ Not Started
+A master automation script (main.py or Snakemake) will be developed to link all steps end-to-end.
 ## 2. Updated Project Timeline
 [Insert your updated table with a 'Status' column.]
 
