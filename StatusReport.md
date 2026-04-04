@@ -14,12 +14,10 @@ All raw datasets have been successfully collected and stored in `data/raw/`:
 
 * **Master Integration Script:** [`scripts/integrate_nba_data.py`](scripts/integrate_nba_data.py)
     * *Description:* This Python script automates the end-to-end integration process. It handles entity resolution for player names, maps team abbreviations to full names, initializes the SQLite environment, and executes the final multi-key SQL join.
-* **Relational Database Artifact:** [`data/nba_project.db`](data/nba_project.db)
+* **Relational Database Artifact:** [`data/processed/nba_project.db`](data/processed/nba_project.db)
     * *Description:* A localized SQLite database file containing the normalized relational tables (`salaries`, `stats_adv`, `stats_trad`, `standings`, and `team_map`). This serves as the primary storage layer for our curated data.
 * **Integrated Master Dataset:** [`data/processed/integrated_nba_data.csv`](data/processed/integrated_nba_data.csv)
     * *Description:* The final output of the integration pipeline. This CSV contains 14 merged attributes across all four data sources, providing the clean "analytical view" required for our upcoming correlation analysis.
-* **Workflow Diagram:** [`doc/workflow_diagram.png`](doc/workflow_diagram.png) 
-    * *Description:* A visual representation of our data lifecycle, illustrating the flow from raw acquisition to the SQL-integrated master file.
 
 ### Data Cleaning
 The following issues were identified and resolved using `scripts/clean_data.py`:
@@ -36,8 +34,12 @@ Cleaned files saved to `data/processed/`:
 - [`data/processed/player_stats_traditional_clean.csv`](data/processed/player_stats_traditional_clean.csv)
 - [`data/processed/player_stats_advanced_clean.csv`](data/processed/player_stats_advanced_clean.csv)
 - [`data/processed/team_standings_clean.csv`](data/processed/team_standings_clean.csv)
-### Workflow Automation ⬜ Not Started
+### Workflow Automation (In progress)
 A master automation script (main.py or Snakemake) will be developed to link all steps end-to-end.
+
+* **Workflow Diagram:** [`doc/workflow_diagram.png`](doc/workflow_diagram.png) 
+    * *Description:* A visual representation of our data lifecycle, illustrating the flow from raw acquisition to the SQL-integrated master file.
+ 
 ## 2. Updated Project Timeline
 
 The following table outlines our progress as of April 3, 2026. We have successfully transitioned from the data acquisition phase to the integration phase, and are currently on track to begin the final analysis.
