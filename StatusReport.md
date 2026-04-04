@@ -1,7 +1,7 @@
 # Milestone 3: Interim Status Report
 
 ## 1. Task Updates and Artifacts
-### Data Acquisition ✅ Complete
+### Data Acquisition 
 All raw datasets have been successfully collected and stored in `data/raw/`:
 
 - **Traditional Stats**: Collected via [`scripts/fetch_player_stats.py`](scripts/fetch_player_stats.py) using `nba_api` → [`data/raw/player_stats_traditional.csv`](data/raw/player_stats_traditional.csv)
@@ -9,10 +9,19 @@ All raw datasets have been successfully collected and stored in `data/raw/`:
 - **Player Salaries**: Scraped via [`scripts/fetch_salaries.py`](scripts/fetch_salaries.py) from Basketball-Reference → [`data/raw/player_salaries.csv`](data/raw/player_salaries.csv)
 - **Team Standings**: Scraped via [`scripts/fetch_team_standings.py`](scripts/fetch_team_standings.py) from Basketball-Reference → [`data/raw/team_standings.csv`](data/raw/team_standings.csv)
 
-### Data Integration 🔄 In Progress
-SQL/Pandas joins across datasets are planned. Entity resolution for player name inconsistencies is being addressed.
+### Data Integration 
+## Integration Artifacts
 
-### Data Cleaning ✅ Complete
+* **Master Integration Script:** [`scripts/integrate_nba_data.py`](scripts/integrate_nba_data.py)
+    * *Description:* This Python script automates the end-to-end integration process. It handles entity resolution for player names, maps team abbreviations to full names, initializes the SQLite environment, and executes the final multi-key SQL join.
+* **Relational Database Artifact:** [`data/nba_project.db`](data/nba_project.db)
+    * *Description:* A localized SQLite database file containing the normalized relational tables (`salaries`, `stats_adv`, `stats_trad`, `standings`, and `team_map`). This serves as the primary storage layer for our curated data.
+* **Integrated Master Dataset:** [`data/processed/integrated_nba_data.csv`](data/processed/integrated_nba_data.csv)
+    * *Description:* The final output of the integration pipeline. This CSV contains 14 merged attributes across all four data sources, providing the clean "analytical view" required for our upcoming correlation analysis.
+* **Workflow Diagram:** [`doc/workflow_diagram.png`](doc/workflow_diagram.png) 
+    * *Description:* A visual representation of our data lifecycle, illustrating the flow from raw acquisition to the SQL-integrated master file.
+
+### Data Cleaning
 The following issues were identified and resolved using `scripts/clean_data.py`:
 
 - **Player name encoding**: Fixed accented characters (e.g., "Nikola JokiÄ" → "Nikola Jokić") using latin1/utf-8 re-encoding
@@ -77,11 +86,31 @@ Our core research questions remain unchanged:
 (Whatever TA or Professor said about it)
 
 ## 4. Challenges and Resolutions
-[Mention API limits, name cleaning, or SQL join issues.]
+
+### 1. Entity Resolution (Name Normalization)
+**Problem:** During the initial join between our `player_salaries_clean.csv` and `player_stats_advanced_clean.csv`, we observed a significant drop in the number of matched records (a "data loss" of approximately 18%). Upon investigation, we found that the datasets were inconsistent in their handling of international characters and suffixes. For example, the NBA API data uses UTF-8 characters like "ć" in *Nikola Jokić*, whereas financial databases often normalize these to "c." Furthermore, inconsistencies in suffixes (e.g., "Kelly Oubre Jr." vs. "Kelly Oubre") prevented standard SQL joins from recognizing them as the same entity.
+
+**Resolution:** To resolve this, I developed a robust `normalize_name` function in Python. This function performs three critical steps:
+1. **Character Mapping:** It uses a dictionary to manually map accented characters to their standard English equivalents.
+2. **Regex Stripping:** It uses regular expressions to remove punctuation and extra whitespace, effectively treating "P.J. Tucker" and "PJ Tucker" as identical keys.
+3. **Join-Key Generation:** Instead of joining on the raw `player_name`, we created a hidden `norm_name` column in every SQLite table. By joining on this normalized key, we recovered nearly all of the missing records, raising our match rate to over 98%.
+
+### 2. Multi-Source Integration (Team Abbreviations and Full Names)
+**Problem:** A major goal of our project is to correlate individual value with team success. However, our team standings dataset from Basketball-Reference uses full geographic names (e.g., "Philadelphia 76ers"), while the player statistics from the NBA API use three-letter abbreviations (e.g., "PHI"). Because there is no "Natural Join" possible between these two formats, we faced a "siloed data" problem where team-level metrics could not be attached to player-level salaries.
+
+**Resolution:** I addressed this by designing a **Relational Mapping Table** within our SQLite database. 
+* I created a `team_map` table that explicitly links every NBA abbreviation to its corresponding full name. 
+* In the final integration script, I implemented a "Double Join" logic: joining the Player to the Team Abbreviation, then joining that Abbreviation to the Mapping Table, and finally joining the Mapping Table to the Standings. 
+This multi-step SQL integration ensures that our final master dataset includes team winning percentages for every player, allowing us to answer our core research questions regarding the correlation between winning and "overpayment."
+
+### 3. File Path Stability
+**Problem:** As we moved from simple CSV files to a structured database, we encountered "File Not Found" errors when running the scripts on different machines. This happened because Python's relative file paths depend on where the terminal is opened, which threatened the "one-click reproducibility" required for this project.
+
+**Resolution:** I updated the integration script to use more defensive programming techniques. By utilizing the `os` and `pathlib` libraries, I added logic to automatically detect the project root and create necessary directories (like `data/processed/`) if they do not exist. This ensures that when our Lead Architect runs the automation script, the SQL database is initialized and the master CSV is exported to the correct folder regardless of the local environment setup.
 
 ## 5. Individual Contribution Summaries
 ### Summary: Colin Cosillo
-[Colin's text here]
+I took the lead on the data integration phase. I developed a Python-based SQL pipeline that loads four disparate CSV datasets into a relational SQLite database. I implemented an Entity Resolution function to standardize player names across sources and created a relational 'Team Map' to link player-level statistics with team-level standings. I also updated the project timeline and documented our technical challenges regarding name-matching discrepancies, multi-source integration, and File Path Stability.
 
 ### Summary: Daniel Kang
 [Daniel's text here]
