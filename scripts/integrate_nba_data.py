@@ -22,12 +22,16 @@ def normalize_name(name):
     return name
 
 def main():
+    if os.path.exists('data'):
+        print("The 'data' folder exists!")
+    else:
+        print("The 'data' folder is missing.")
     # Load the 4 cleaned CSV datasets
     # Note: Ensure these files are in the same directory or provide full paths
-    salaries = pd.read_csv('player_salaries_clean.csv')
-    stats_adv = pd.read_csv('player_stats_advanced_clean.csv')
-    stats_trad = pd.read_csv('player_stats_traditional_clean.csv')
-    standings = pd.read_csv('team_standings_clean.csv')
+    salaries = pd.read_csv('data/processed/player_salaries_clean.csv')
+    stats_adv = pd.read_csv('data/processed/player_stats_advanced_clean.csv')
+    stats_trad = pd.read_csv('data/processed/player_stats_traditional_clean.csv')
+    standings = pd.read_csv('data/processed/team_standings_clean.csv')
 
     # Apply Entity Resolution (Normalization) to the join keys
     salaries['norm_name'] = salaries['player_name'].apply(normalize_name)
@@ -53,7 +57,8 @@ def main():
     # 3. Initialize SQLite Database
     # We create a local .db file which serves as a reproducible artifact
     os.makedirs('data', exist_ok=True)
-    conn = sqlite3.connect('data/nba_project.db')
+    os.makedirs('data/processed', exist_ok=True)
+    conn = sqlite3.connect('data/processed/nba_project.db')
     
     # Load raw data and mapping table into SQLite as relational tables
     salaries.to_sql('salaries', conn, if_exists='replace', index=False)
