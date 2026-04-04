@@ -30,7 +30,22 @@ Cleaned files saved to `data/processed/`:
 ### Workflow Automation ⬜ Not Started
 A master automation script (main.py or Snakemake) will be developed to link all steps end-to-end.
 ## 2. Updated Project Timeline
-[Insert your updated table with a 'Status' column.]
+
+The following table outlines our progress as of April 3, 2026. We have successfully transitioned from the data acquisition phase to the integration phase, and are currently on track to begin the final analysis.
+
+| Phase | Task | Status | Deadline | Responsibility |
+| :--- | :--- | :--- | :--- | :--- |
+| **Milestone 2** | Project Plan Submission | **Complete** | March 8, 2026 | Lead Strategist |
+| **Acquisition** | Raw Performance Data Harvesting | **Complete** | March 15, 2026 | Lead Architect |
+| **Acquisition** | Salary Web Scraping (HoopsHype) | **Complete** | March 18, 2026 | Lead Architect |
+| **Integration** | SQL Database & Schema Setup | **Complete** | March 22, 2026 | Lead Strategist |
+| **Integration** | Entity Resolution (Name Normalization) | **Complete** | March 25, 2026 | Lead Strategist |
+| **Integration** | Multi-Source SQL Table Merging | **Complete** | April 1, 2026 | Lead Strategist |
+| **Milestone 3** | Interim Status Report | **In Progress** | April 5, 2026 | Both |
+| **Analysis** | Efficiency vs. Salary Value Modeling | Not Started | April 15, 2026 | Both |
+| **Analysis** | Data Visualization (Seaborn/Matplotlib) | Not Started | April 22, 2026 | Lead Strategist |
+| **Finalization** | Workflow Automation (Snakemake/Main script) | Not Started | April 29, 2026 | Lead Architect |
+| **Finalization** | Final Report & Release | Not Started | May 6, 2026 | Both |
 
 ## 3. Changes to Project Plan
 
