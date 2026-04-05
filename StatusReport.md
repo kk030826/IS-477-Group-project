@@ -18,6 +18,8 @@ All raw datasets have been successfully collected and stored in `data/raw/`:
     * *Description:* A localized SQLite database file containing the normalized relational tables (`salaries`, `stats_adv`, `stats_trad`, `standings`, and `team_map`). This serves as the primary storage layer for our curated data.
 * **Integrated Master Dataset:** [`data/processed/integrated_nba_data.csv`](data/processed/integrated_nba_data.csv)
     * *Description:* The final output of the integration pipeline. This CSV contains 14 merged attributes across all four data sources, providing the clean "analytical view" required for our upcoming correlation analysis.
+* **Integration Run Notebook:** [`Integration_Run.ipynb`](Integration_Run.ipynb)
+    * *Description:* The notebook that runs the master integration script
 
 ### Data Cleaning
 The following issues were identified and resolved using `scripts/clean_data.py`:
@@ -34,7 +36,7 @@ Cleaned files saved to `data/processed/`:
 - [`data/processed/player_stats_traditional_clean.csv`](data/processed/player_stats_traditional_clean.csv)
 - [`data/processed/player_stats_advanced_clean.csv`](data/processed/player_stats_advanced_clean.csv)
 - [`data/processed/team_standings_clean.csv`](data/processed/team_standings_clean.csv)
-### Workflow Automation (In progress)
+### Workflow Automation
 A master automation script (main.py or Snakemake) will be developed to link all steps end-to-end.
 
 * **Workflow Diagram:** [`doc/workflow_diagram.png`](doc/workflow_diagram.png) 
@@ -133,7 +135,7 @@ This multi-step SQL integration ensures that our final master dataset includes t
 
 ## 5. Individual Contribution Summaries
 ### Summary: Colin Cosillo
-I took the lead on the data integration phase. I developed a Python-based SQL pipeline that loads four disparate CSV datasets into a relational SQLite database. I implemented an Entity Resolution function to standardize player names across sources and created a relational 'Team Map' to link player-level statistics with team-level standings. I also updated the project timeline and documented our technical challenges regarding name-matching discrepancies, multi-source integration, and File Path Stability.
+I took the lead on the data integration phase. I developed a Python-based SQL pipeline that loads four disparate CSV datasets into a relational SQLite database. I implemented an Entity Resolution function to standardize player names across sources and created a relational 'Team Map' to link player-level statistics with team-level standings. I also updated the project timeline, made the workflow diagram, and documented our technical challenges regarding name-matching discrepancies, multi-source integration, and File Path Stability.
 
 ### Summary: Daniel Kang
 I was responsible for the entire data acquisition pipeline. I developed  and executed all three data collection scripts in the `scripts/` directory: `fetch_player_stats.py` (nba_api), `fetch_salaries.py` (Basketball-Reference scraping), and `fetch_team_standings.py` (Basketball-Reference scraping). I also set up the repository directory structure (`data/raw/`, `data/processed/`, `scripts/`), debugged `nba_api` parameter errors caused by a library version change, and resolved a HoopsHype scraping failure by switching to Basketball-Reference. Additionally, I developed `scripts/clean_data.py` to address data quality issues including player name encoding errors, salary formatting, shifted columns, and team name inconsistencies across all four datasets.
