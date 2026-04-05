@@ -85,7 +85,28 @@ Our core research questions remain unchanged:
   significantly exceed their contractual costs?
 
 ### Feedback from Milestone 2
-(Whatever TA or Professor said about it)
+In response to TA feedback requesting clarification on dataset 
+licensing and data format requirements, we provide the following:
+
+**Licensing:**
+- **nba_api**: Interfaces with NBA.com's publicly available statistics 
+  endpoint. Used strictly for non-commercial, educational research 
+  purposes in compliance with NBA.com's Terms of Use.
+- **Basketball-Reference (Stats & Salaries)**: Data is available for 
+  personal and non-commercial use per their Terms of Use. Our scraping 
+  frequency complies with their `robots.txt` policy.
+
+**Different Data Formats/Access Methods:**
+Our datasets satisfy the requirement for different access methods:
+- **nba_api** (API-based access): Player traditional and advanced stats 
+  are retrieved programmatically via a Python API wrapper, returning 
+  structured JSON data that is converted to CSV.
+- **Web Scraping** (HTTP-based access): Salary and team standings data 
+  are collected via `requests` and `BeautifulSoup` by parsing raw HTML 
+  tables from Basketball-Reference.
+
+These two distinct acquisition methods demonstrate different data 
+collection techniques as required by the project guidelines.
 
 ## 4. Challenges and Resolutions
 
