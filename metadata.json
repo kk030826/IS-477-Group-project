@@ -4,6 +4,8 @@
   "name": "NBA Productivity and Compensation Analysis (2024-2026)",
   "description": "An integrated research dataset linking NBA player performance metrics, advanced efficiency ratings, and contractual salary data to analyze market valuation inefficiencies.",
   "url": "https://github.com/kk030826/IS-477-Group-project",
+  "temporalCoverage": "2024/2026",
+  "spatialCoverage": "United States",
   "creator": [
     {
       "@type": "Person",
@@ -28,6 +30,13 @@
     "Points Per Game",
     "True Shooting Percentage",
     "Team Winning Percentage"
+  ],
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "text/csv",
+      "contentUrl": "https://github.com/kk030826/IS-477-Group-project/blob/main/data/processed/integrated_nba_data.csv"
+    }
   ],
   "includedInDataCatalog": {
     "@type": "DataCatalog",
