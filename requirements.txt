@@ -1,0 +1,20 @@
+# NBA Productivity vs. Compensation Analysis
+# Install: pip install -r requirements.txt
+
+# Data acquisition
+nba_api>=1.4.1
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Data processing
+pandas>=2.0.0
+
+# Analysis and visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Database (included in Python stdlib, listed for documentation)
+# sqlite3 — built-in
+
+# Utilities (included in Python stdlib)
+# hashlib, json, os, re, argparse — built-in

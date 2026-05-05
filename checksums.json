@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-05-05T03:15:18.604683",
+  "files": {
+    "data/raw/player_stats_traditional.csv": "dd4d287ef3821b45da42261a842074651532da8b8cf641e1bec0e82b7d975d7e",
+    "data/raw/player_stats_advanced.csv": "100030c2533a40cf241eb33909acef137aec9d3c45c930caad9dadb098a4f50d",
+    "data/raw/player_salaries.csv": "c563b420f890f2b31911ffaf6495d3cc834a2b76c78caf52324831d80aac79ba",
+    "data/raw/team_standings.csv": "0c3bc16702a8f3146c39d9756ff842613b981d9a40b3c2b70e5afa7ea6e5cd1a",
+    "data/processed/player_stats_traditional_clean.csv": "7947374cbb107e9cfc1bf8c32819e92e534d9d25d60d4c351132dd33c41fed0b",
+    "data/processed/player_stats_advanced_clean.csv": "ab156d6d47a045515c729a3b82aaa43410f56902e2b260b6b75c4fe33e0777ed",
+    "data/processed/player_salaries_clean.csv": "a4cfec7b760020923ece465cee3c346b65d452acf853bedc04b4b0492239bf7b",
+    "data/processed/team_standings_clean.csv": "2578e22d0680504877ac7f74877158223580c94dc417b7379ef84638d5bc51e8",
+    "data/processed/integrated_nba_data.csv": "31ef6a8734b674520e1b18b711e253ca6abf33c48ddb458d2bd2246bf8326928",
+    "data/processed/nba_project.db": "5ba76a22b3d78b454b9d1719c019c86903ec3786c39fc9597969081b1b1e1280",
+    "results/undervalued_players.csv": "8761fcb5ce5ebe78d2383730e67e44825ea09bb4f13c432a3ab68ca5ea00543e"
+  }
+}
