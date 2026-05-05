@@ -3,7 +3,7 @@
   "@type": "Dataset",
   "name": "NBA Productivity and Compensation Analysis (2024-2026)",
   "description": "An integrated research dataset linking NBA player performance metrics, advanced efficiency ratings, and contractual salary data to analyze market valuation inefficiencies.",
-  "url": "https://github.com/kk030826/IS-477-Group-project/new/main",
+  "url": "https://github.com/kk030826/IS-477-Group-project",
   "creator": [
     {
       "@type": "Person",
