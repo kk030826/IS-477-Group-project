@@ -102,10 +102,40 @@ Data cleaning was performed by the script `scripts/clean_data.py`, which process
 
 ## Findings (~500 words)
 
-<!-- TODO (Colin): Insert correlation analysis results and charts here -->
-<!-- Discuss: PIE vs Salary R², PTS vs Salary R², TS_PCT vs Salary R² -->
-<!-- Include: results/productivity_vs_salary.png -->
-<!-- Include: top 10 undervalued players from results/undervalued_players.csv -->
+Our quantitative analysis yielded several significant findings regarding the relationship between productivity and market valuation in the modern NBA landscape. We conducted a multi-variable regression and correlation analysis to determine which on-court metrics best predict a player's annual compensation. Our results revealed that raw scoring remains the most powerful predictor of annual salary with a correlation coefficient of $r = 0.818$. When calculating the coefficient of determination, we found that points per game (PTS) explains approximately $66.9\%$ of the variance in player salary ($R^2 = 0.669$). This extremely strong positive relationship indicates that for the vast majority of NBA players, the primary path to a maximum contract is through high-volume offensive output. This suggests that the star archetype in the league is still largely defined by scoring average rather than holistic impact on team performance, which represents a potential market bias toward visible scoring totals over more subtle contributions to winning.
+
+In contrast, the Player Impact Estimate (PIE), which accounts for a player’s total contribution across rebounding, defense, and playmaking, showed a notably lower correlation of $r = 0.618$. This metric only explains roughly $38.2\%$ of the variance in compensation ($R^2 = 0.382$). This disparity suggests that front offices still pay a massive financial premium for high-volume scorers, potentially overvaluing offensive production while significantly undervaluing holistic impact. This implies that a player who averages twenty points on mediocre efficiency is likely to be paid significantly more than a player who averages twelve points but contributes more effectively across every other statistical category. Furthermore, our integration with team standings showed that winning organizations often employ a higher density of value outliers, suggesting that finding cheap impact is a direct prerequisite for sustained success in a salary-cap environment.
+
+The most striking finding was the negligible correlation between True Shooting Percentage (TS%) and salary which calculated to a mere $r = 0.132$, explaining less than $2\%$ of salary variance ($R^2 = 0.017$). Despite the immense emphasis placed on efficiency by the modern coaching and analytics community, the financial market appears to almost entirely ignore shooting percentage when determining annual compensation. This indicates that a high-efficiency role player who shoots effectively but on lower volume is significantly more likely to be underpaid than a high-volume, low-efficiency scorer who commands a larger share of the salary cap despite a lower net impact on winning. This lack of correlation is further confirmed by our correlation heatmap which visually demonstrates the disconnect between shooting efficiency and financial reward.
+
+Beyond these primary correlations, we observed that age has a minor positive correlation with salary at $r = 0.281$, which suggests a veteran premium exists but is secondary to scoring volume. By calculating a specific Value Ratio defined as Player Impact Estimate per million dollars of salary, we identified a cluster of players who provide All-Star level impact while earning salaries in the bottom quartile of the league. Our analysis of the top ten undervalued players revealed that individuals provide massive impact efficiency for a fraction of a star player cost. This phenomenon is often a byproduct of the NBA rookie scale contract structure or minimum-salary exceptions, which artificially suppress the wages of young, highly efficient contributors. The data suggests that as players move from their initial contracts into unrestricted free agency, their salaries often skyrocket based on their points per game rather than a sustained increase in their efficiency metrics, creating a potential trap for teams that overpay for past volume rather than future impact.
+
+### Visualizations
+
+![Traditional Volume: Points Per Game vs. Salary](results/pts_vs_salary.png)
+
+![NBA Player Impact Estimate (PIE) vs. Salary](results/productivity_vs_salary.png)
+
+![Performance vs. Compensation Correlation Heatmap](results/correlation_heatmap.png)
+
+![Top 10 Undervalued Players](results/undervalued_bar_chart.png)
+
+### Top 10 Undervalued Players (Source: results/undervalued_players.csv)
+
+The following table represents the "Surplus Value" outliers identified in our analysis, calculated by dividing a player's Impact Estimate (PIE) by their annual salary in millions.
+
+| Player Name | PIE | Salary (2025-26) | Value Ratio |
+| :--- | :--- | :--- | :--- |
+| Jeremiah Robinson-Earl | 0.087 | $131,970 | 0.659 |
+| Charles Bassey | 0.113 | $263,940 | 0.428 |
+| Dalano Banton | 0.089 | $263,940 | 0.337 |
+| Killian Hayes | 0.085 | $263,940 | 0.322 |
+| Monte Morris | 0.096 | $321,184 | 0.298 |
+| Mo Bamba | 0.100 | $458,711 | 0.218 |
+| Garrison Mathews | 0.068 | $429,325 | 0.158 |
+| Jabari Walker | 0.107 | $724,598 | 0.147 |
+| Nae'Qwan Tomlin | 0.096 | $718,150 | 0.133 |
+| Cameron Oliver | 0.076 | $718,150 | 0.106 |
 
 ## Future Work (~500–1000 words)
 
