@@ -1,0 +1,36 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Dataset",
+  "name": "NBA Productivity and Compensation Analysis (2024-2026)",
+  "description": "An integrated research dataset linking NBA player performance metrics, advanced efficiency ratings, and contractual salary data to analyze market valuation inefficiencies.",
+  "url": "https://github.com/kk030826/IS-477-Group-project/new/main",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Colin Cosillo"
+    },
+    {
+      "@type": "Person",
+      "name": "Daniel Kang"
+    }
+  ],
+  "license": "https://opensource.org/licenses/MIT",
+  "keywords": [
+    "NBA Analytics",
+    "Sports Economics",
+    "Data Integration",
+    "Salary Cap Management",
+    "Player Efficiency"
+  ],
+  "variableMeasured": [
+    "Salary",
+    "Player Impact Estimate",
+    "Points Per Game",
+    "True Shooting Percentage",
+    "Team Winning Percentage"
+  ],
+  "includedInDataCatalog": {
+    "@type": "DataCatalog",
+    "name": "GitHub"
+  }
+}
