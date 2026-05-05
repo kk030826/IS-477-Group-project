@@ -158,6 +158,13 @@ A second significant challenge involved the structural integration of team level
 
 Finally, we faced hurdles regarding the reproducibility and stability of our automated workflows. As we transitioned from local flat files to a structured relational database, we encountered several pathing errors when running our scripts across different local environments. This threatened our core objective of creating a one click reproducible project. We addressed this by utilizing more advanced file handling libraries to automatically detect project roots and generate the necessary directory structures at runtime. This ensured that any third party could clone our repository and execute the full pipeline from raw data acquisition to final visualization without encountering file not found errors. Furthermore, managing the different dependencies across libraries like Seaborn, Matplotlib, and Pandas required strict versioning in our requirements file to prevent breaking changes in the visualization rendering. Overcoming these logistical challenges was essential not only for the success of our specific analysis but also for meeting the standards for transparency, automation, and provenance required by the course curriculum.
 
+## Contributions
+
+**Daniel Kang (Lead Architect):**
+Developed and executed all data acquisition scripts (`fetch_player_stats.py`, `fetch_salaries.py`, `fetch_team_standings.py`). Built the data cleaning pipeline (`clean_data.py`) addressing encoding issues, column shifts, salary formatting, and low-minute player filtering. Created the end-to-end workflow automation (`main.py`) with SHA-256 integrity verification. Authored the Data Profile, Data Quality, Data Cleaning, and Reproducing sections of the final report. Set up `requirements.txt`, `LICENSE`, `.gitignore`, and `checksums.json`.
+
+**Colin Cosillo (Lead Strategist):**
+Developed the SQL integration pipeline (`integrate_nba_data.py`) including entity resolution and the team mapping table. Created the analysis and visualization script (`final_analysis.py`) producing correlation analysis and four charts. Authored the Summary, Findings, Future Work, Challenges, and References sections of the final report. Created the Data Dictionary (`doc/data_dictionary.md`) and Schema.org metadata (`metadata.json`). Designed the workflow diagram and managed milestone releases.
 
 ## Reproducing
 
@@ -228,6 +235,8 @@ This compares the SHA-256 checksums of all files in `data/` and `results/` again
 | `results/productivity_vs_salary.png` | PIE vs. Salary scatter plot |
 | `results/undervalued_players.csv` | Top 10 undervalued players by value ratio |
 | `checksums.json` | SHA-256 checksums for all data files |
+| `metadata.json` | Schema.org Dataset metadata for FAIR compliance |
+| `doc/data_dictionary.md` | Data dictionary describing all variables |
 
 ## References
 
