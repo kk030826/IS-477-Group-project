@@ -1,33 +1,58 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
-# Load the integrated master dataset
-df = pd.read_csv('data/processed/integrated_nba_data.csv')
+def main():
+    # Load data
+    df = pd.read_csv('data/processed/integrated_nba_data.csv')
+    
+    # Ensure results directory exists
+    if not os.path.exists('results'):
+        os.makedirs('results')
 
-# 1. Correlation Analysis
-# We want to see how PTS (Traditional) vs PIE (Advanced) correlate with Salary
-correlation_matrix = df[['salary_2025_26', 'PTS', 'PIE', 'TS_PCT', 'AGE']].corr()
-print("Correlation with Salary:")
-print(correlation_matrix['salary_2025_26'])
+    # Calculate Value Ratio
+    # We use (Salary / 1,000,000) to keep the ratio readable
+    df['value_ratio'] = df['PIE'] / (df['salary_2025_26'] / 1_000_000)
 
-# 2. Visualization: Productivity vs. Salary
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=df, x='PIE', y='salary_2025_26', hue='team_win_pct', size='PTS', palette='viridis')
-plt.title('NBA Player Impact Estimate (PIE) vs. Salary 2025-26')
-plt.xlabel('Player Impact Estimate (Advanced Metric)')
-plt.ylabel('Salary ($)')
-plt.grid(True, alpha=0.3)
+    # --- FIX: Drop duplicates and filter for 10 unique players ---
+    # We sort by value_ratio first, then drop duplicates keeping the highest value
+    df_unique = df.sort_values('value_ratio', ascending=False).drop_duplicates(subset=['player_name'])
+    top_10 = df_unique.head(10)
 
-# Identify Undervalued Outliers (High PIE, Low Salary)
-# Drawing a quadrant for visualization
-plt.axvline(x=df['PIE'].mean(), color='red', linestyle='--')
-plt.axhline(y=df['salary_2025_26'].median(), color='red', linestyle='--')
+    # 1. CHART: PTS vs Salary
+    plt.figure(figsize=(10, 6))
+    sns.regplot(data=df, x='PTS', y='salary_2025_26', scatter_kws={'alpha':0.5}, line_kws={'color':'red'})
+    plt.title('Traditional Volume: Points Per Game vs. Salary')
+    plt.xlabel('Points Per Game (PTS)')
+    plt.ylabel('Salary (USD)')
+    plt.savefig('results/pts_vs_salary.png')
+    plt.close()
 
-plt.savefig('results/productivity_vs_salary.png')
-plt.show()
+    # 2. CHART: Correlation Heatmap
+    plt.figure(figsize=(8, 6))
+    corr_cols = ['salary_2025_26', 'PTS', 'PIE', 'TS_PCT', 'AGE', 'team_win_pct']
+    sns.heatmap(df[corr_cols].corr(), annot=True, cmap='coolwarm', fmt=".2f")
+    plt.title('Correlation Heatmap: Performance vs. Compensation')
+    plt.tight_layout()
+    plt.savefig('results/correlation_heatmap.png')
+    plt.close()
 
-# 3. Identify Top 10 'Undervalued' Players (High PIE/Salary Ratio)
-df['value_ratio'] = df['PIE'] / (df['salary_2025_26'] / 1_000_000)
-undervalued = df.sort_values(by='value_ratio', ascending=False).head(10)
-undervalued[['player_name', 'PIE', 'salary_2025_26', 'value_ratio']].to_csv('results/undervalued_players.csv')
+    # 3. FIXED CHART: Top 10 Undervalued Bar Chart
+    plt.figure(figsize=(12, 7))
+    # Using 'player_name' on y-axis to ensure 10 distinct labels
+    sns.barplot(data=top_10, x='value_ratio', y='player_name', palette='magma')
+    
+    plt.title('Top 10 Undervalued Players (Impact-to-Cost Efficiency)', fontsize=15)
+    plt.xlabel('Value Ratio (PIE per Million $)', fontsize=12)
+    plt.ylabel('Player Name', fontsize=12)
+    plt.tight_layout() # Ensures labels don't get cut off
+    
+    plt.savefig('results/undervalued_bar_chart.png')
+    plt.close()
+
+    print(f"Success! Generated 3 charts in the results/ directory.")
+    print(f"The top undervalued player is {top_10.iloc[0]['player_name']}.")
+
+if __name__ == "__main__":
+    main()
